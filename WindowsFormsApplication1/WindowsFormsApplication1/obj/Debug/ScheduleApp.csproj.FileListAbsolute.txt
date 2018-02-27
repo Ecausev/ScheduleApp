@@ -20,3 +20,6 @@ D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsF
 D:\Users\ecausevic\Desktop\ScheduleApp\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ScheduleApp.exe.config
 D:\Users\ecausevic\Desktop\ScheduleApp\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ScheduleApp.exe
 D:\Users\ecausevic\Desktop\ScheduleApp\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ScheduleApp.pdb
+D:\Users\ecausevic\Desktop\Test\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\ScheduleApp.exe.config
+D:\Users\ecausevic\Desktop\Test\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ScheduleApp.exe
+D:\Users\ecausevic\Desktop\Test\ScheduleApp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ScheduleApp.pdb
