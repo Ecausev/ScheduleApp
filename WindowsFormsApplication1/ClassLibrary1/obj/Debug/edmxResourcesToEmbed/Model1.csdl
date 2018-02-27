@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Odradeno">
+    <Key>
+      <PropertyRef Name="OdradenoId" />
+    </Key>
+    <Property Name="OdradenoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="SatnicaId" Type="Int32" Nullable="false" />
+    <Property Name="Dan" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Sati" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Satnica" Relationship="Self.FK_Odradeno_Satnica" FromRole="Odradeno" ToRole="Satnica" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Odradeno_User" FromRole="Odradeno" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Satnica">
+    <Key>
+      <PropertyRef Name="SatnicaId" />
+    </Key>
+    <Property Name="SatnicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dani" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Vrijednost" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Odradeno" Relationship="Self.FK_Odradeno_Satnica" FromRole="Satnica" ToRole="Odradeno" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+    <Property Name="UserRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Odradeno" Relationship="Self.FK_Odradeno_User" FromRole="User" ToRole="Odradeno" />
+  </EntityType>
+  <Association Name="FK_Odradeno_Satnica">
+    <End Role="Satnica" Type="Self.Satnica" Multiplicity="1" />
+    <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satnica">
+        <PropertyRef Name="SatnicaId" />
+      </Principal>
+      <Dependent Role="Odradeno">
+        <PropertyRef Name="SatnicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Odradeno_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Odradeno">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Odradeno" EntityType="Self.Odradeno" />
+    <EntitySet Name="Satnica" EntityType="Self.Satnica" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Odradeno_Satnica" Association="Self.FK_Odradeno_Satnica">
+      <End Role="Satnica" EntitySet="Satnica" />
+      <End Role="Odradeno" EntitySet="Odradeno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Odradeno_User" Association="Self.FK_Odradeno_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Odradeno" EntitySet="Odradeno" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

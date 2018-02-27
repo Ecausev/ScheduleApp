@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Odradeno">
+    <Key>
+      <PropertyRef Name="OdradenoId" />
+    </Key>
+    <Property Name="OdradenoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SatnicaId" Type="int" Nullable="false" />
+    <Property Name="Dan" Type="date" Nullable="false" />
+    <Property Name="Sati" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Satnica">
+    <Key>
+      <PropertyRef Name="SatnicaId" />
+    </Key>
+    <Property Name="SatnicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dani" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="Vrijednost" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Enabled" Type="bit" Nullable="false" />
+    <Property Name="UserRole" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Odradeno_Satnica">
+    <End Role="Satnica" Type="Self.Satnica" Multiplicity="1" />
+    <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satnica">
+        <PropertyRef Name="SatnicaId" />
+      </Principal>
+      <Dependent Role="Odradeno">
+        <PropertyRef Name="SatnicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Odradeno_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Odradeno">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AppModelStoreContainer">
+    <EntitySet Name="Odradeno" EntityType="Self.Odradeno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Satnica" EntityType="Self.Satnica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Odradeno_Satnica" Association="Self.FK_Odradeno_Satnica">
+      <End Role="Satnica" EntitySet="Satnica" />
+      <End Role="Odradeno" EntitySet="Odradeno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Odradeno_User" Association="Self.FK_Odradeno_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Odradeno" EntitySet="Odradeno" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AppModelStoreContainer" CdmEntityContainer="DbEntities">
+    <EntitySetMapping Name="Odradeno">
+      <EntityTypeMapping TypeName="AppModel.Odradeno">
+        <MappingFragment StoreEntitySet="Odradeno">
+          <ScalarProperty Name="OdradenoId" ColumnName="OdradenoId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SatnicaId" ColumnName="SatnicaId" />
+          <ScalarProperty Name="Dan" ColumnName="Dan" />
+          <ScalarProperty Name="Sati" ColumnName="Sati" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satnica">
+      <EntityTypeMapping TypeName="AppModel.Satnica">
+        <MappingFragment StoreEntitySet="Satnica">
+          <ScalarProperty Name="SatnicaId" ColumnName="SatnicaId" />
+          <ScalarProperty Name="Dani" ColumnName="Dani" />
+          <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="AppModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

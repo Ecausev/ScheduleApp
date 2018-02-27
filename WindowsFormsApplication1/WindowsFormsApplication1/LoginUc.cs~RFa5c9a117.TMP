@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Database;
+
+namespace ScheduleApp
+{
+    public partial class LoginUc : UserControl
+    {
+        UserDb _userDb = new UserDb();
+
+        public event EventHandler OnButtonClicked;
+        
+        public string UserName { get; set;}
+        
+        public string Password { get; set; }
+
+        public LoginUc()
+        {
+            InitializeComponent();
+        }
+
+        private void Username_TextChanged(object sender, EventArgs e)
+        {
+            Text = Username.Text;
+            UserName = Username.Text;
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+            Text = txtPassword.Text;
+            Password = txtPassword.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (OnButtonClicked != null)
+                OnButtonClicked(sender, e);
+        }
+
+    }
+}

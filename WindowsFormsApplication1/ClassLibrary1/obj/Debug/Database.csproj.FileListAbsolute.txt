@@ -1,0 +1,10 @@
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\Database.dll.config
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\Database.dll
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\Database.pdb
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\EntityFramework.dll
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\EntityFramework.xml
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\obj\Debug\Database.csprojResolveAssemblyReference.cache
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\obj\Debug\Database.dll
+D:\Users\ecausevic\Documents\Visual Studio 2015\Projects\TestFormDialog\WindowsFormsApplication1\ClassLibrary1\obj\Debug\Database.pdb

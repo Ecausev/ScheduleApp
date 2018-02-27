@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Odradeno">
+          <Key>
+            <PropertyRef Name="OdradenoId" />
+          </Key>
+          <Property Name="OdradenoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SatnicaId" Type="int" Nullable="false" />
+          <Property Name="Dan" Type="date" Nullable="false" />
+          <Property Name="Sati" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Satnica">
+          <Key>
+            <PropertyRef Name="SatnicaId" />
+          </Key>
+          <Property Name="SatnicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dani" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="Vrijednost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Odradeno_Satnica">
+          <End Role="Satnica" Type="Self.Satnica" Multiplicity="1" />
+          <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satnica">
+              <PropertyRef Name="SatnicaId" />
+            </Principal>
+            <Dependent Role="Odradeno">
+              <PropertyRef Name="SatnicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odradeno_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Odradeno">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppModelStoreContainer">
+          <EntitySet Name="Odradeno" EntityType="Self.Odradeno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Satnica" EntityType="Self.Satnica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Odradeno_Satnica" Association="Self.FK_Odradeno_Satnica">
+            <End Role="Satnica" EntitySet="Satnica" />
+            <End Role="Odradeno" EntitySet="Odradeno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odradeno_User" Association="Self.FK_Odradeno_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Odradeno" EntitySet="Odradeno" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Odradeno">
+          <Key>
+            <PropertyRef Name="OdradenoId" />
+          </Key>
+          <Property Name="OdradenoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SatnicaId" Type="Int32" Nullable="false" />
+          <Property Name="Dan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sati" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Satnica" Relationship="Self.FK_Odradeno_Satnica" FromRole="Odradeno" ToRole="Satnica" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Odradeno_User" FromRole="Odradeno" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Satnica">
+          <Key>
+            <PropertyRef Name="SatnicaId" />
+          </Key>
+          <Property Name="SatnicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dani" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vrijednost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Odradeno" Relationship="Self.FK_Odradeno_Satnica" FromRole="Satnica" ToRole="Odradeno" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Odradeno" Relationship="Self.FK_Odradeno_User" FromRole="User" ToRole="Odradeno" />
+        </EntityType>
+        <Association Name="FK_Odradeno_Satnica">
+          <End Role="Satnica" Type="Self.Satnica" Multiplicity="1" />
+          <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satnica">
+              <PropertyRef Name="SatnicaId" />
+            </Principal>
+            <Dependent Role="Odradeno">
+              <PropertyRef Name="SatnicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odradeno_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Odradeno" Type="Self.Odradeno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Odradeno">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Odradeno" EntityType="Self.Odradeno" />
+          <EntitySet Name="Satnica" EntityType="Self.Satnica" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Odradeno_Satnica" Association="Self.FK_Odradeno_Satnica">
+            <End Role="Satnica" EntitySet="Satnica" />
+            <End Role="Odradeno" EntitySet="Odradeno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odradeno_User" Association="Self.FK_Odradeno_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Odradeno" EntitySet="Odradeno" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AppModelStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="Odradeno">
+            <EntityTypeMapping TypeName="AppModel.Odradeno">
+              <MappingFragment StoreEntitySet="Odradeno">
+                <ScalarProperty Name="OdradenoId" ColumnName="OdradenoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SatnicaId" ColumnName="SatnicaId" />
+                <ScalarProperty Name="Dan" ColumnName="Dan" />
+                <ScalarProperty Name="Sati" ColumnName="Sati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Satnica">
+            <EntityTypeMapping TypeName="AppModel.Satnica">
+              <MappingFragment StoreEntitySet="Satnica">
+                <ScalarProperty Name="SatnicaId" ColumnName="SatnicaId" />
+                <ScalarProperty Name="Dani" ColumnName="Dani" />
+                <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="AppModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
